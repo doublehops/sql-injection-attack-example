@@ -1,0 +1,4 @@
+---
+hostname: secure.api
+docroot: /var/www/web
+log_file_type: apache2

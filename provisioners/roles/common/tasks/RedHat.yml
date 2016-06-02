@@ -1,0 +1,23 @@
+---
+- name: Update pkg cache
+  yum: name=* state=latest
+
+- name: Install required system packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - vim
+    - git
+    - ntp
+    - libselinux-python
+
+- name: Bash | Copy Bash alias file for root
+  template: src="bash_aliases.j2" dest=~/.bash_aliases mode=0700
+
+- name: Bash | Include bash_aliases file for root
+  lineinfile: dest=~/.bashrc regexp="~/.bash_aliases" line="~/.bash_aliases"
+
+- name: Bash | Copy Bash alias file for normal user
+  template: src="bash_aliases.j2" dest=/home/{{ ansible_ssh_user }}/.bash_aliases owner={{ ansible_ssh_user}} group={{ansible_ssh_user}} mode=0700
+
+- name: Bash | Include bash_aliases file for normal user
+  lineinfile: dest="/home/{{ ansible_ssh_user }}/.bashrc" regexp="~/.bash_aliases" line="~/.bash_aliases"

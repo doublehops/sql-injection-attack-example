@@ -1,0 +1,29 @@
+---
+  - name: Install php7.0
+    apt: pkg={{ item }} state=latest force=yes
+    with_items:
+      - php7.0-fpm
+      - php7.0-mysql
+      - php7.0-cli
+      - php7.0-curl
+      - php7.0-gd
+
+  - name: PHP | Install composer
+    shell:
+      curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f ./composer.phar /usr/local/bin/composer
+      creates=/usr/local/bin/composer
+
+  - name: PHP | Ensure listen.group is set.
+    lineinfile: dest=/etc/php/7.0/fpm/pool.d/www.conf regexp='listen.group = www-data' line='listen.group = www-data' state=present
+    notify: php7.0-fpm-restart
+
+  - name: PHP | Ensure listen.owner is set.
+    lineinfile: dest=/etc/php/7.0/fpm/pool.d/www.conf regexp='listen.owner = www-data' line='listen.owner = www-data' state=present
+    notify: php7.0-fpm-restart
+
+  - name: PHP | Ensure listen.mode is set.
+    lineinfile: dest=/etc/php/7.0/fpm/pool.d/www.conf regexp='listen.mode = 0660' line='listen.mode = 0660' state=present
+    notify: php7.0-fpm-restart
+
+  - name: PHP | Add vendor/bin to the user's path
+    shell: echo 'export PATH="$PATH:/var/www/vendor/bin"' >> ~/.bashrc

@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/var/www/secure","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"vagrant-root":{"id":"vagrant-root","group":"www-data","mount_options":["dmode=775,fmode=775"],"guestpath":"/var/www","hostpath":"/var/www/secure","disabled":false,"__vagrantfile":true}}}

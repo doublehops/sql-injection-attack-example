@@ -1,0 +1,42 @@
+---
+- include_vars: "vars/{{ env }}.yml"
+
+- name: Nginx | Install Nginx
+  apt:
+    pkg=nginx
+    state=latest
+    force=yes
+
+- name: Nginx | Remove default vhost
+  file: dest=/etc/nginx/sites-available/default state=absent
+- name: Nginx | Remove default vhost enabled symlink
+  file: dest=/etc/nginx/sites-enabled/default state=absent
+
+- name: Nginx | Ensure Nginx is running
+  service: name=nginx state=started
+
+- name: Nginx | Check that path /var/www exists
+  file: dest=/var/www state=directory owner={{ system_user }} group={{ system_user }}
+
+- name: Nginx | Check vhost path exists
+  file: dest=/etc/nginx/sites-available state=directory owner=root group=root mode=0700
+
+- name: Nginx | Check password path exists
+  file: dest=/etc/nginx/passwords state=directory owner=root group=root mode=0755
+
+- name: Nginx | Copy host file
+  template: src="templates/local_dev_nginx-debian.j2" dest=/etc/nginx/sites-available/default.conf mode=0700
+  notify: nginx-restart
+
+- name: Nginx | Create host symlink
+  file: path=/etc/nginx/sites-enabled/default.conf state=link src=/etc/nginx/sites-available/default.conf
+  notify: nginx-restart
+
+- name: Nginx | Remove default index file
+  file: dest=/var/www/index.html state=absent
+
+- name: Nginx | Ensure web directory exists
+  file: dest="/var/www/web" state=directory owner="{{ansible_user}}" group="{{ansible_user}}"
+
+- name: Nginx | Copy index template
+  template: src="templates/index.j2" dest="/var/www/web/index.php" owner="{{ansible_user}}" group="{{ansible_user}}" mode=755

@@ -1,0 +1,36 @@
+<VirtualHost *:80>
+
+    ServerName {{hostname}}
+    DocumentRoot {{docroot}}
+    RewriteEngine On
+
+    <Directory {{docroot}}>
+        Options FollowSymLinks
+        AllowOverride all
+        Order allow,deny
+        Allow from all
+        EnableSendfile Off
+
+        RewriteEngine on
+        # If a directory or a file exists, use the request directly
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        # Otherwise forward the request to index.php
+        RewriteRule . index.php
+
+        # use index.php as index file
+        DirectoryIndex index.php index.html
+    </Directory>
+
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+
+    LogLevel info
+    ErrorLog /var/log/{{log_file_type}}/error.log
+    CustomLog /var/log/{{log_file_type}}/access.log combined
+
+    RewriteEngine On
+
+</VirtualHost>

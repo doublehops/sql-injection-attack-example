@@ -1,0 +1,37 @@
+server {
+    set $yii_bootstrap "index.php";
+    listen    80;
+
+    server_name {{ hostname }};
+
+    root {{ docroot }};
+    index $yii_bootstrap;
+
+    access_log  /var/log/nginx/access.log;
+    error_log   /var/log/nginx/error.log info;
+
+    location / {
+        try_files $uri $uri/ /$yii_bootstrap?$args;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires 24h;
+    #   log_not_found off;
+    }
+
+    location ~ \.php$ {
+    
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    location ~ /\.(ht|svn|git|sql) {
+        deny all;
+    }
+
+    sendfile off;
+}

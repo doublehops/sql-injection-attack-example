@@ -1,0 +1,5 @@
+export EDITOR=/usr/bin/vim
+function EXT_COLOR () { echo -ne "\[\033[38;5;$1m\]"; }
+export PS1="{{ shell_prompt }}"
+PATH=$PATH:/var/www/vendor/bin
+cd /var/www

@@ -1,0 +1,2 @@
+[local_dev]
+secure.api system_user=vagrant ansible_ssh_pass=vagrant env=local_dev
