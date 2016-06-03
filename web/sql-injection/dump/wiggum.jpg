@@ -1,0 +1,13 @@
+converted 'https://cdn.meme.am/instances/500x/63152419.jpg' (ANSI_X3.4-1968) -> 'https://cdn.meme.am/instances/500x/63152419.jpg' (UTF-8)
+--2016-06-03 05:27:24--  https://cdn.meme.am/instances/500x/63152419.jpg
+Resolving cdn.meme.am (cdn.meme.am)... 69.162.124.122
+Connecting to cdn.meme.am (cdn.meme.am)|69.162.124.122|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 85493 (83K) [image/jpeg]
+Saving to: '63152419.jpg'
+
+     0K .......... .......... .......... .......... .......... 59% 16.5K 2s
+    50K .......... .......... .......... ...                  100%  135K=3.3s
+
+2016-06-03 05:27:29 (25.4 KB/s) - '63152419.jpg' saved [85493/85493]
+
