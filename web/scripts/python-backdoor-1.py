@@ -1,4 +1,7 @@
 #!/usr/bin/python
+
+# This is the same as running netcat: nc -l -p 8000
+
 # import python modules
 from socket import *
 HOST = ''                 # '' means bind to all interfaces
