@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'damien','B','damien@b2cloud.com.au',4,'$2y$13$MGiKp7VEyakHqsbp9r0gzeLEaDzlAIiph8DRDzJjTgV.vEvicjA72',NULL,NULL,'AU','+61 418 998 283','+61418998283',1,'123123123',0,'Dws_WcXZ4h1R2EMGSSnnFhS4_c0rYAlMebizM1fximkfWO_aYCeLBgctFJa_FZef',0.00,NULL,NULL,'2015-10-16 01:05:46','2015-10-16 01:05:46'),(2,'bob','T','bob@t.com',4,'',NULL,NULL,'','',NULL,0,NULL,0,NULL,0.00,NULL,NULL,NULL,'2016-01-06 05:56:07');
+INSERT INTO `user` VALUES (1,'john','damien','B','damien@b2cloud.com.au',4,'$2y$13$MGiKp7VEyakHqsbp9r0gzeLEaDzlAIiph8DRDzJjTgV.vEvicjA72',NULL,NULL,'AU','+61 418 998 283','+61418998283',1,'123123123',0,'Dws_WcXZ4h1R2EMGSSnnFhS4_c0rYAlMebizM1fximkfWO_aYCeLBgctFJa_FZef',0.00,NULL,NULL,'2015-10-16 01:05:46','2015-10-16 01:05:46'),(2,'mary','bob','T','bob@t.com',4,'',NULL,NULL,'','',NULL,0,NULL,0,NULL,0.00,NULL,NULL,NULL,'2016-01-06 05:56:07');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

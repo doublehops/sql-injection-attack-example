@@ -16,7 +16,7 @@
     template: src="templates/my.cnf.j2" dest=/root/.my.cnf
 
   - name: MySQL | Create dev user
-    mysql_user: login_user=root login_password={{ root_password }} name={{ username }} password={{ password }} priv=*.*:CREATE,DROP,DELETE,INSERT,SELECT,UPDATE,ALTER state=present
+    mysql_user: login_user=root login_password={{ root_password }} name={{ username }} password={{ password }} priv="*.*:CREATE,DROP,DELETE,INSERT,SELECT,UPDATE,ALTER,LOCK TABLES" state=present
 
   - name: MySQL | Create development database
     mysql_db: name={{ database }}
