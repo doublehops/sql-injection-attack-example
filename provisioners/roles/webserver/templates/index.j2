@@ -8,7 +8,7 @@ td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; paddin
 
 <title>Webserver</title>
 
-<h1>Webserver provsioned by a b2common project</h1>
+<h1>Webserver provsioned with Ansible</h1>
 
 <table>
     <tr><th>Hostname:</th><td><?= $_SERVER['HTTP_HOST'] ?></td></tr>
