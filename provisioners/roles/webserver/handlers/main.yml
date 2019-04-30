@@ -7,3 +7,12 @@
   
   - name: nginx-stop
     service: name=nginx state=stopped
+
+  - name: php-start
+    service: name=php7.0-fpm state=started
+  
+  - name: php-restart
+    service: name=php7.0-fpm state=restarted
+  
+  - name: php-stop
+    service: name=php7.0-fpm state=stopped
