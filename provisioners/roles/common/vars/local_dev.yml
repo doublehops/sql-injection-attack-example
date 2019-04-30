@@ -1,0 +1,2 @@
+---
+shell_prompt: '`EXT_COLOR 88`LOCAL_DEV [\u@\h \W]\$`EXT_COLOR 255` '

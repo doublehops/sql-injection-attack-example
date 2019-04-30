@@ -1,4 +1,6 @@
 ---
+- include_vars: "vars/{{env}}.yml"
+
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=36000
   become: true
