@@ -1,3 +1,20 @@
 ---
-- include_vars: "vars/{{env}}.yml"
-- include: "{{ansible_os_family}}.yml"
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=36000
+  become: true
+
+- name: Install required system packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - vim
+    - htop
+    - git
+    - ntp
+    - curl
+  become: true
+
+- name: Bash | Copy Bash alias file for root
+  template: src="bash_aliases.j2" dest=~/.bash_aliases
+
+- name: Bash | Copy Bash alias file for normal user
+  template: src="bash_aliases.j2" dest=/home/{{ ansible_ssh_user }}/.bash_aliases
