@@ -22,6 +22,9 @@ In order to setup locally, you will need Virtualbox, Vagrant and Ansible install
 // Use Ansible to provision (install the webserver, PHP, MariaDB/MYSQL) the box with the following:
 # dev/provision.sh local_dev
 
+// Import database schema and data into database:
+# ssh vagrant@192.168.30.99 -i .vagrant/machines/default/virtualbox/private_key '/var/www/dev/import-database.sh'
+
 // Load the webpage in your browser: http://192.168.30.99
 ```
 
