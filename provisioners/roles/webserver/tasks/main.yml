@@ -6,6 +6,7 @@
     pkg=nginx
     state=latest
     force=yes
+  become: true
 
 - name: Nginx | Remove default vhost
   file: dest=/etc/nginx/sites-available/default state=absent
@@ -27,10 +28,12 @@
 - name: Nginx | Copy host file
   template: src="templates/local_dev_nginx-debian.j2" dest=/etc/nginx/sites-available/default.conf mode=0700
   notify: nginx-restart
+  become: true
 
 - name: Nginx | Create host symlink
   file: path=/etc/nginx/sites-enabled/default.conf state=link src=/etc/nginx/sites-available/default.conf
   notify: nginx-restart
+  become: true
 
 - name: Nginx | Remove default index file
   file: dest=/var/www/index.html state=absent

@@ -12,11 +12,11 @@ Vagrant.configure("2") do |config|
 
     config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :group=>'www-data', :mount_options=>['dmode=775,fmode=775']
 
-    #config.vm.provision "ansible" do |ansible|
-    #  ansible.playbook = "provisioners/playbook.yml"
-    #  ansible.inventory_path = "provisioners/ansible_hosts"
-    #  ansible.limit = "all"
-    #end
+    config.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "provisioners/playbook.yml"
+      ansible.inventory_path = "provisioners/ansible_hosts"
+      ansible.limit = "all"
+    end
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", 2048]
