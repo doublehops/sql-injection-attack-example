@@ -8,4 +8,4 @@ fi
 
 host=$1
 
-ansible-playbook provisioners/playbook.yml -i "provisioners/ansible_hosts" --limit $host $2
+ansible-playbook provisioners/playbook.yml -i "provisioners/ansible_hosts" --private-key .vagrant/machines/default/virtualbox/private_key --limit $host $2 

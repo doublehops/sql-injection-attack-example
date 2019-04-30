@@ -10,20 +10,23 @@
 
 - name: Nginx | Remove default vhost
   file: dest=/etc/nginx/sites-available/default state=absent
+  become: true
+
 - name: Nginx | Remove default vhost enabled symlink
   file: dest=/etc/nginx/sites-enabled/default state=absent
+  become: true
 
 - name: Nginx | Ensure Nginx is running
   service: name=nginx state=started
+  become: true
 
 - name: Nginx | Check that path /var/www exists
   file: dest=/var/www state=directory owner={{ system_user }} group={{ system_user }}
+  become: true
 
 - name: Nginx | Check vhost path exists
   file: dest=/etc/nginx/sites-available state=directory owner=root group=root mode=0700
-
-- name: Nginx | Check password path exists
-  file: dest=/etc/nginx/passwords state=directory owner=root group=root mode=0755
+  become: true
 
 - name: Nginx | Copy host file
   template: src="templates/local_dev_nginx-debian.j2" dest=/etc/nginx/sites-available/default.conf mode=0700

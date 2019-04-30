@@ -8,6 +8,7 @@
       - mysql-client
       - python-mysql.connector
       - python-mysqldb
+    become: true
 
   - name: MySQL | Set root password
     mysql_user: name=root password={{ root_password }} priv=*.*:ALL,GRANT state=present

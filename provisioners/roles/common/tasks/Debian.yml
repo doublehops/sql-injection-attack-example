@@ -1,6 +1,7 @@
 ---
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=36000
+  become: true
 
 - name: Install required system packages
   apt: pkg={{ item }} state=installed
@@ -9,6 +10,8 @@
     - htop
     - git
     - ntp
+    - curl
+  become: true
 
 - name: Bash | Copy Bash alias file for root
   template: src="bash_aliases.j2" dest=~/.bash_aliases
