@@ -4,9 +4,10 @@
     require '../config.php';
 
     // Exploit query: http://secure.api/sql-injection/login.php?username=damien&password=%27%20OR%201=1;
+    // Will return all users in table.
 
-    $username = isset($_GET['username']) ? $_GET['username'] : null;
-    $password = isset($_GET['password']) ? $_GET['password'] : null;
+    $username = $_GET['username'] ?? null;
+    $password = $_GET['password'] ?? null;
 
     $sql = "SELECT * FROM user WHERE username='". $username. "' AND password='". $password ."'";
 
@@ -20,7 +21,7 @@
 
     $results = $stmt->fetchAll();
 
-    dd($results);
+    json_dump($results);
 
 
 
