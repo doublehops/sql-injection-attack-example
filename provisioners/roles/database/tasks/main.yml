@@ -2,12 +2,13 @@
   - include_vars: "vars/{{env}}.yml"
 
   - name: MySQL | Install MySQL
-    apt: pkg={{ item }} state=installed force=yes
-    with_items:
+    apt:
+      pkg:
       - mysql-server
       - mysql-client
       - python-mysql.connector
       - python-mysqldb
+      state: present
     become: true
 
   - name: MySQL | Set root password

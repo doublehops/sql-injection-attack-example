@@ -6,13 +6,14 @@
   become: true
 
 - name: Install required system packages
-  apt: pkg={{ item }} state=installed
-  with_items:
+  apt:
+    pkg:
     - vim
     - htop
     - git
     - ntp
     - curl
+    state: present
   become: true
 
 - name: Bash | Copy Bash alias file for root

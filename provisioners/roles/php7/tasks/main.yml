@@ -1,12 +1,13 @@
 ---
   - name: Install php7.0
-    apt: pkg={{ item }} state=latest force=yes
-    with_items:
+    apt:
+      pkg:
       - php7.0-fpm
       - php7.0-mysql
       - php7.0-cli
       - php7.0-curl
       - php7.0-gd
+      state: present
     become: true
 
   - name: PHP | Install composer
