@@ -1,8 +1,7 @@
 SQL INJECTION ATTACK EXAMPLE
 ============================
 
-This small project is a working example of setting up a website vulnerable to SQL injection with instructions
-on how to exploit it to get shell access.
+This is a small project to show how easy it can be to exploit SQL injection and how dangerous it can be.
 
 Setup Instructions
 ----------------------------
