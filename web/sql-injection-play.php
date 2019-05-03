@@ -18,9 +18,9 @@
         }
         
         // Rather than process login, we're just going to dump output for this example.
-        $results = $stmt->fetchAll();
+        //$results = $stmt->fetchAll();
     
-        json_dump($results);
+        //json_dump($results);
     }
 
 ?>
