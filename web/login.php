@@ -50,7 +50,7 @@
 
 <h2>Insecure webform</h2>
 <p>
-    This is a web form that is insecure in the frontend and backend. It doesn't actually try to login but is open to SQL Injection which are exmplained in the examples below.
+    This is a web form that is insecure in the frontend and backend. It doesn't actually attempt to login but is open to SQL Injection which is explained with the examples below.
 </p>
 
 <p>
