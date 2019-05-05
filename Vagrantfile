@@ -1,6 +1,5 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "debian/jessie64"
-    config.vm.box_url = "https://atlas.hashicorp.com/debian/boxes/jessie64"
+    config.vm.box = "debian/stretch64"
 
     #config.vbguest.auto_update = true
 
@@ -10,9 +9,9 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 3306, host:3306, auto_correct: true
     config.vm.network :forwarded_port, guest: 1338, host:1338, auto_correct: true
 
-    config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :group=>'www-data', :mount_options=>['dmode=775,fmode=775']
+    config.vm.synced_folder "./", "/var/www", id: "vagrant", :group=>'www-data', :mount_options=>['dmode=777,fmode=775']
 
-    #config.vm.provision "ansible" do |ansible|
+    #config.vm.provision "ansible_local" do |ansible|
     #  ansible.playbook = "provisioners/playbook.yml"
     #  ansible.inventory_path = "provisioners/ansible_hosts"
     #  ansible.limit = "all"

@@ -41,6 +41,9 @@ CREATE TABLE `contact` (
 --
 
 LOCK TABLES `contact` WRITE;
+
+INSERT INTO `contact` VALUES (1, 1, 'joan', 'smith', 'AU', '0400 222 333', 'joan@example.com', '', 'NOW()');
+
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
