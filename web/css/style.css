@@ -1,0 +1,14 @@
+p {
+    font-family: Verdana, Arial;
+    line-height: 1.6;
+    font-size: 0.875em;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: blue;
+}
+
+.container {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
