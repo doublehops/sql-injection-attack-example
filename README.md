@@ -31,7 +31,7 @@ Play Around with SQL Injection
 ------------------------------
 
 I have added an example of how to exploit an SQL Injection vulnerability by changing the passwords of all users in the user table.
-<a href="sql-injection-play.php">SQL Injection Play</a>. You need to reload the page to see the results as the select query is executed before the update request.
+<a href="sql-injection-playground.php">SQL Injection Playground</a>. You need to reload the page to see the results as the select query is executed before the update request.
 
 
 Gain Shell Access to Webserver with the Help of SQL Injection

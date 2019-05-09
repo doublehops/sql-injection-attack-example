@@ -1,7 +1,8 @@
-p {
+body,p {
     font-family: Verdana, Arial;
     line-height: 1.6;
     font-size: 0.875em;
+    color: #333;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -11,4 +12,63 @@ a:link, a:visited, a:hover, a:active {
 .container {
 	border: 1px solid #ccc;
 	padding: 10px;
+}
+
+em.input {
+	font-weight: bold;
+	background-color: #D7C562;
+}
+
+input[type=text] {
+    width: 400px;
+}
+
+dl {
+      display: grid;
+      grid-template-columns: max-content auto;
+      row-gap: 10px;
+}
+
+dt {
+      grid-column-start: 1;
+}
+
+dd {
+      grid-column-start: 2;
+}
+
+.flash {
+    color: #f00;
+    font-weight: bold;
+    border: 1px solid #FF0000;
+    padding: 5px;
+    min-width: 100px;
+}
+
+.code-block {
+    border: 1px solid #358CCB;
+    border-left: 5px solid #358CCB;
+    background: #EEE;
+    padding: px;
+    width: 800px;
+    min-width: 100px;
+    color: #333;
+    font-weight: bold;
+}
+
+.code-block h4 {
+    margin: 0;
+    text-indent: 10px;
+    color: #FFF;
+    background-color: #358CCB;
+    line-height: 1.8;
+    font-size: 0.8em;
+}
+
+.code-block p {
+    margin: 10px;
+}
+
+.bottom-note {
+    margin-top: 100px;
 }

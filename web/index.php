@@ -19,7 +19,7 @@ td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; paddin
     <tr><th>PHP:</th><td><?= phpversion() ?></td></tr>
 </table>
 
-<p><a href="sql-injection-play.php">SQL Injection Play</login></p>
+<p><a href="sql-injection-playground.php">SQL Injection Playground</login></p>
 <p><a href="login.php">Login</login></p>
 
 
