@@ -9,6 +9,13 @@ a:link, a:visited, a:hover, a:active {
 	color: blue;
 }
 
+form {
+    padding: 10px;
+    max-width: 600px;
+    min-width: 350px;
+    border: 1px solid #666;
+}
+
 .container {
 	border: 1px solid #ccc;
 	padding: 10px;
