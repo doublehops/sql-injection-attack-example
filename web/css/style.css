@@ -21,6 +21,10 @@ form {
 	padding: 10px;
 }
 
+em {
+    font-weight: bold;
+}
+
 em.input {
 	font-weight: bold;
 	background-color: #D7C562;

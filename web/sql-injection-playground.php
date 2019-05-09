@@ -9,9 +9,10 @@
     // Passwords are hashed with the insecure MD5 algorithm.
     $sql = "SELECT * FROM user WHERE username='$username' AND password=MD5('$password')";
 
-    if (isset($_POST['username'])) {
+    if ($username) {
         $stmt = $db->prepare($sql);
         $stmt->execute();
+        die('executed');
 
         // Rather than process login, we're just going to dump output for this example.
         $result = $stmt->fetch();
@@ -23,16 +24,6 @@
             $flash = 'Incorrect username or password';
         }
     }
-
-    // Gather users
-    if (isset($_GET['table'])) {
-        $table = $_GET['table'];
-        $sql = "SELECT * FROM $table";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $items = $stmt->fetchAll();
-    }
-    
 
 ?>
 
