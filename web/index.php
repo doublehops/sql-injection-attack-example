@@ -27,7 +27,7 @@ td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; paddin
 <ul>
     <li><a href="sql-injection-playground.php">SQL Injection Playground</a></li>
     <li><a href="contact-list.php">Contact List</a></li>
-    <li><a href="login.php">Login</a></li>
+    <li><a href="login.php">Login form used to gain shell access</a></li>
 </ul>
 
 
