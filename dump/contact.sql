@@ -42,7 +42,11 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 
-INSERT INTO `contact` VALUES (1, 1, 'joan', 'smith', 'AU', '0400 222 333', 'joan@example.com', '', 'NOW()');
+INSERT INTO `contact` VALUES (1, 1, 'Joan', 'Smith', 'AU', '0400 222 333', 'joans@example.com', '', 'NOW()');
+INSERT INTO `contact` VALUES (2, 2, 'John', 'Smith', 'AU', '0400 938 301', 'johns@example.com', '', 'NOW()');
+INSERT INTO `contact` VALUES (3, 3, 'Barry', 'Edwards', 'AU', '0400 391 048', 'barrye@example.com', '', 'NOW()');
+INSERT INTO `contact` VALUES (4, 4, 'Barry', 'Vince', 'AU', '0400 192 183', 'barryv@example.com', '', 'NOW()');
+INSERT INTO `contact` VALUES (5, 5, 'Patrick', 'Evans', 'AU', '0400 667 316', 'patricke@example.com', '', 'NOW()');
 
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;

