@@ -92,3 +92,15 @@ table.contact-list {
 td {
     border: 1px solid #CCC;
 }
+
+.steps {
+    border: 3px solid #CCC;
+    padding: 0 10px;
+    margin: 20px 0;
+    padding-bottom: 20px;
+}
+
+.steps h2 {
+    font-size: 1em;
+    color: #358CCB;
+}
