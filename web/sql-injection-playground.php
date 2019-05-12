@@ -84,14 +84,14 @@
 
         <p class="bottom-note"><strong>NOTE: Do NOT use MD5 to hash passwords.</strong></p>
 
-    <script>
-        window.onload = function() {
-          $('em').click(function() {
-            str = $(this).html();
-            $('#password-input').val(str);
-          });
-        }
-    </script>
+        <script>
+            window.onload = function() {
+              $('em').click(function() {
+                str = $(this).html();
+                $('#password-input').val(str);
+              });
+            }
+        </script>
     
     </body>
 </html>
