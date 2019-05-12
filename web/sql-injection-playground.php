@@ -12,9 +12,7 @@
     if ($username) {
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        die('executed');
 
-        // Rather than process login, we're just going to dump output for this example.
         $result = $stmt->fetch();
     
         if ($result) {
