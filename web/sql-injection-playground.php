@@ -78,7 +78,7 @@
         <div class="code-block">
             <h4>Resulting SQL</h4>
             <p>
-                SELECT * FROM user WHERE username='john' AND password=MD5('somepassattempt'); UPDATE user SET last_name='Jones';'')
+                SELECT * FROM user WHERE username='john' AND password=MD5('xxxx'); UPDATE user SET last_name='Jones';'')
             </p>
         </div>
 
