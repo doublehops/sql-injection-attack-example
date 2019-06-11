@@ -3,16 +3,16 @@
     service:
       name: php7.0-fpm
       state: started
-      become: true
+    become: true
   
   - name: php-restart
     service:
       name: php7.0-fpm
       state: restarted
-      become: true
+    become: true
   
   - name: php-stop
     service:
       name: php7.0-fpm
       state: stopped
-      become: true
+    become: true

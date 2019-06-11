@@ -19,16 +19,8 @@ td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; paddin
     <tr><th>PHP:</th><td><?= phpversion() ?></td></tr>
 </table>
 
-<p>
-    This project is to give some examples of how SQL Injection can be used on insecure code. There examples broken down
-    into different pages with the login page an example of gaining shell access to the server.
-</p>
-
-<ul>
-    <li><a href="sql-injection-playground.php">SQL Injection Playground</a></li>
-    <li><a href="contact-list.php">Contact List</a></li>
-    <li><a href="login.php">Login form used to gain shell access</a></li>
-</ul>
+<p><a href="sql-injection-play.php">SQL Injection Play</login></p>
+<p><a href="login.php">Login</login></p>
 
 
 <?php
