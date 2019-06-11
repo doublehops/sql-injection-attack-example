@@ -1,2 +1,2 @@
 [local_dev]
-192.168.30.99 system_user=vagrant ansible_ssh_pass=vagrant env=local_dev
+192.168.30.99 system_user=vagrant env=local_dev
