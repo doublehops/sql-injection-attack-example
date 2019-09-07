@@ -1,4 +1,4 @@
 ---
-hostname: secure.api
+hostname: insecure.local 
 docroot: /var/www/web
 log_file_type: apache2

@@ -1,9 +1,9 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "debian/stretch64"
 
-    #config.vbguest.auto_update = true
+    config.vbguest.auto_update = true
 
-    config.vm.hostname = "secure.api";
+    config.vm.hostname = "insecure.local";
     config.vm.network :private_network, ip: "192.168.30.99"
     config.vm.network :forwarded_port, guest: 80, host:8000, auto_correct: true
     config.vm.network :forwarded_port, guest: 3306, host:3306, auto_correct: true
