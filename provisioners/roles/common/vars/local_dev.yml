@@ -1,2 +1,2 @@
 ---
-shell_prompt: '`EXT_COLOR 88`LOCAL_DEV [\u@\h \W]\$`EXT_COLOR 255` '
+shell_prompt: '`EXT_COLOR 3`insecure.local [\u@\h \W]\$`EXT_COLOR 255` '
