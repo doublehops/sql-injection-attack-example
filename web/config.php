@@ -1,5 +1,5 @@
 <?php
 
-	define('HOST', '192.168.30.99');
+	define('HOST', 'insecure.local');
 
     $db = new PDO('mysql:host=localhost;dbname=proj', 'dev', 'pass12');
