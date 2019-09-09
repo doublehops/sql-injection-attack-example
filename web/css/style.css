@@ -9,6 +9,15 @@ a:link, a:visited, a:hover, a:active {
 	color: blue;
 }
 
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:active {
+	color: #999;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 form {
     padding: 10px;
     max-width: 600px;
