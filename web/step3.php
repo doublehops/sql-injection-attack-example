@@ -41,7 +41,7 @@
  	        	</p>
              </div>
         <nav>
-            <a href="login4.php">Goto step 4</a>
+            <a href="step4.php">Goto step 4</a>
         </nav>
         </div>
 

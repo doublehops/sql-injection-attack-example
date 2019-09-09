@@ -80,7 +80,7 @@
             </div>
 		</div>	
         <nav>
-            <a href="login2.php">Goto step 2</a>
+            <a href="step2.php">Goto step 2</a>
         </nav>
     </div>
 

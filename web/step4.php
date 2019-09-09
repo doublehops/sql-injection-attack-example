@@ -45,7 +45,7 @@
                 </div>
             </div>
             <nav>
-                <a href="login5.php" class="nav">Goto step 5</a>
+                <a href="step5.php" class="nav">Goto step 5</a>
             </nav>
         </div>
 

